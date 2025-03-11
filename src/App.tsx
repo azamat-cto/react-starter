@@ -1,15 +1,15 @@
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 function App() {
     return (
         <div className="flex flex-col items-center justify-center h-svh max-w-2xl mx-auto">
-            <AspectRatio ratio={16 / 9}>
-                <img
-                    alt="Image"
-                    className="rounded-md object-cover"
-                    src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
+            <Avatar>
+                <AvatarImage
+                    alt="@shadcn"
+                    src="https://github.com/shadcn.png"
                 />
-            </AspectRatio>
+                <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
         </div>
     );
 }
