@@ -1,7 +1,7 @@
 {
     "name": "react-starter",
     "private": true,
-    "version": "0.0.7",
+    "version": "0.0.8",
     "type": "module",
     "scripts": {
         "dev": "vite",
@@ -15,7 +15,8 @@
         "@tailwindcss/vite": "^4.0.12",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
-        "tailwindcss": "^4.0.12"
+        "tailwindcss": "^4.0.12",
+        "tailwindcss-animate": "^1.0.7"
     },
     "devDependencies": {
         "@eslint/js": "^9.21.0",
