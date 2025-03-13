@@ -1,39 +1,79 @@
 import {
-    Drawer,
-    DrawerClose,
-    DrawerContent,
-    DrawerDescription,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerTitle,
-    DrawerTrigger,
-} from "@/components/ui/drawer";
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuPortal,
+    DropdownMenuSeparator,
+    DropdownMenuShortcut,
+    DropdownMenuSub,
+    DropdownMenuSubContent,
+    DropdownMenuSubTrigger,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 
 function App() {
     return (
-        <div className="flex flex-col items-center justify-center h-svh max-w-2xl mx-auto">
-            <Drawer>
-                <DrawerTrigger asChild>
-                    <Button variant="outline">Open Drawer</Button>
-                </DrawerTrigger>
-                <DrawerContent>
-                    <div className="mx-auto w-full max-w-sm">
-                        <DrawerHeader>
-                            <DrawerTitle>Move Goal</DrawerTitle>
-                            <DrawerDescription>
-                                Set your daily activity goal.
-                            </DrawerDescription>
-                        </DrawerHeader>
-                        <DrawerFooter>
-                            <Button>Submit</Button>
-                            <DrawerClose asChild>
-                                <Button variant="outline">Cancel</Button>
-                            </DrawerClose>
-                        </DrawerFooter>
-                    </div>
-                </DrawerContent>
-            </Drawer>
+        <div className="flex justify-center h-svh max-w-2xl mx-auto pt-4">
+            <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                    <Button variant="outline">Open</Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56">
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuGroup>
+                        <DropdownMenuItem>
+                            Profile
+                            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem>
+                            Billing
+                            <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem>
+                            Settings
+                            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem>
+                            Keyboard shortcuts
+                            <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
+                        </DropdownMenuItem>
+                    </DropdownMenuGroup>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuGroup>
+                        <DropdownMenuItem>Team</DropdownMenuItem>
+                        <DropdownMenuSub>
+                            <DropdownMenuSubTrigger>
+                                Invite users
+                            </DropdownMenuSubTrigger>
+                            <DropdownMenuPortal>
+                                <DropdownMenuSubContent>
+                                    <DropdownMenuItem>Email</DropdownMenuItem>
+                                    <DropdownMenuItem>Message</DropdownMenuItem>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuItem>More...</DropdownMenuItem>
+                                </DropdownMenuSubContent>
+                            </DropdownMenuPortal>
+                        </DropdownMenuSub>
+                        <DropdownMenuItem>
+                            New Team
+                            <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
+                        </DropdownMenuItem>
+                    </DropdownMenuGroup>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>GitHub</DropdownMenuItem>
+                    <DropdownMenuItem>Support</DropdownMenuItem>
+                    <DropdownMenuItem disabled>API</DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>
+                        Log out
+                        <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+                    </DropdownMenuItem>
+                </DropdownMenuContent>
+            </DropdownMenu>
         </div>
     );
 }
