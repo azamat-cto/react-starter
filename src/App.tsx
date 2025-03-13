@@ -1,41 +1,39 @@
-import { columns, User } from "@/components/columns";
-import { DataTable } from "@/components/data-table";
-import { useEffect, useState } from "react";
+import {
+    Drawer,
+    DrawerClose,
+    DrawerContent,
+    DrawerDescription,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerTitle,
+    DrawerTrigger,
+} from "@/components/ui/drawer";
+import { Button } from "@/components/ui/button";
 
 function App() {
-    const [data, setData] = useState<User[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
-
-    useEffect(() => {
-        const getData = async () => {
-            setLoading(true);
-            try {
-                const response = await fetch(
-                    "https://jsonplaceholder.typicode.com/users",
-                );
-                if (!response.ok) {
-                    throw new Error("Failed to fetch users");
-                }
-                const data: User[] = await response.json();
-                setData(data);
-            } catch (error) {
-                setError((error as Error).message);
-            } finally {
-                setLoading(false);
-            }
-        };
-        getData();
-    }, []);
-
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error}</p>;
-
     return (
         <div className="flex flex-col items-center justify-center h-svh max-w-2xl mx-auto">
-            <div className="w-full overflow-x-auto">
-                <DataTable columns={columns} data={data} />
-            </div>
+            <Drawer>
+                <DrawerTrigger asChild>
+                    <Button variant="outline">Open Drawer</Button>
+                </DrawerTrigger>
+                <DrawerContent>
+                    <div className="mx-auto w-full max-w-sm">
+                        <DrawerHeader>
+                            <DrawerTitle>Move Goal</DrawerTitle>
+                            <DrawerDescription>
+                                Set your daily activity goal.
+                            </DrawerDescription>
+                        </DrawerHeader>
+                        <DrawerFooter>
+                            <Button>Submit</Button>
+                            <DrawerClose asChild>
+                                <Button variant="outline">Cancel</Button>
+                            </DrawerClose>
+                        </DrawerFooter>
+                    </div>
+                </DrawerContent>
+            </Drawer>
         </div>
     );
 }
