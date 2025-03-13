@@ -1,7 +1,7 @@
 {
     "name": "react-starter",
     "private": true,
-    "version": "0.0.29",
+    "version": "0.0.30",
     "type": "module",
     "scripts": {
         "dev": "vite",
@@ -23,6 +23,7 @@
         "@radix-ui/react-popover": "^1.1.6",
         "@radix-ui/react-slot": "^1.1.2",
         "@tailwindcss/vite": "^4.0.12",
+        "@tanstack/react-table": "^8.21.2",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "cmdk": "^1.0.4",

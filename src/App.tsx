@@ -1,77 +1,41 @@
-import {
-    ContextMenu,
-    ContextMenuCheckboxItem,
-    ContextMenuContent,
-    ContextMenuItem,
-    ContextMenuLabel,
-    ContextMenuRadioGroup,
-    ContextMenuRadioItem,
-    ContextMenuSeparator,
-    ContextMenuShortcut,
-    ContextMenuSub,
-    ContextMenuSubContent,
-    ContextMenuSubTrigger,
-    ContextMenuTrigger,
-} from "@/components/ui/context-menu";
+import { columns, User } from "@/components/columns";
+import { DataTable } from "@/components/data-table";
+import { useEffect, useState } from "react";
 
 function App() {
+    const [data, setData] = useState<User[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const getData = async () => {
+            setLoading(true);
+            try {
+                const response = await fetch(
+                    "https://jsonplaceholder.typicode.com/users",
+                );
+                if (!response.ok) {
+                    throw new Error("Failed to fetch users");
+                }
+                const data: User[] = await response.json();
+                setData(data);
+            } catch (error) {
+                setError((error as Error).message);
+            } finally {
+                setLoading(false);
+            }
+        };
+        getData();
+    }, []);
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error}</p>;
+
     return (
         <div className="flex flex-col items-center justify-center h-svh max-w-2xl mx-auto">
-            <ContextMenu>
-                <ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm">
-                    Right click here
-                </ContextMenuTrigger>
-                <ContextMenuContent className="w-64">
-                    <ContextMenuItem inset>
-                        Back
-                        <ContextMenuShortcut>⌘[</ContextMenuShortcut>
-                    </ContextMenuItem>
-                    <ContextMenuItem inset disabled>
-                        Forward
-                        <ContextMenuShortcut>⌘]</ContextMenuShortcut>
-                    </ContextMenuItem>
-                    <ContextMenuItem inset>
-                        Reload
-                        <ContextMenuShortcut>⌘R</ContextMenuShortcut>
-                    </ContextMenuItem>
-                    <ContextMenuSub>
-                        <ContextMenuSubTrigger inset>
-                            More Tools
-                        </ContextMenuSubTrigger>
-                        <ContextMenuSubContent className="w-48">
-                            <ContextMenuItem>
-                                Save Page As...
-                                <ContextMenuShortcut>⇧⌘S</ContextMenuShortcut>
-                            </ContextMenuItem>
-                            <ContextMenuItem>
-                                Create Shortcut...
-                            </ContextMenuItem>
-                            <ContextMenuItem>Name Window...</ContextMenuItem>
-                            <ContextMenuSeparator />
-                            <ContextMenuItem>Developer Tools</ContextMenuItem>
-                        </ContextMenuSubContent>
-                    </ContextMenuSub>
-                    <ContextMenuSeparator />
-                    <ContextMenuCheckboxItem checked>
-                        Show Bookmarks Bar
-                        <ContextMenuShortcut>⌘⇧B</ContextMenuShortcut>
-                    </ContextMenuCheckboxItem>
-                    <ContextMenuCheckboxItem>
-                        Show Full URLs
-                    </ContextMenuCheckboxItem>
-                    <ContextMenuSeparator />
-                    <ContextMenuRadioGroup value="pedro">
-                        <ContextMenuLabel inset>People</ContextMenuLabel>
-                        <ContextMenuSeparator />
-                        <ContextMenuRadioItem value="pedro">
-                            Pedro Duarte
-                        </ContextMenuRadioItem>
-                        <ContextMenuRadioItem value="colm">
-                            Colm Tuite
-                        </ContextMenuRadioItem>
-                    </ContextMenuRadioGroup>
-                </ContextMenuContent>
-            </ContextMenu>
+            <div className="w-full overflow-x-auto">
+                <DataTable columns={columns} data={data} />
+            </div>
         </div>
     );
 }
