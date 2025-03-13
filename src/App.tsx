@@ -1,65 +1,77 @@
 import {
-    Command,
-    CommandEmpty,
-    CommandGroup,
-    CommandInput,
-    CommandItem,
-    CommandList,
-    CommandSeparator,
-    CommandShortcut,
-} from "@/components/ui/command";
-import {
-    Calculator,
-    Calendar,
-    CreditCard,
-    Settings,
-    Smile,
-    User,
-} from "lucide-react";
+    ContextMenu,
+    ContextMenuCheckboxItem,
+    ContextMenuContent,
+    ContextMenuItem,
+    ContextMenuLabel,
+    ContextMenuRadioGroup,
+    ContextMenuRadioItem,
+    ContextMenuSeparator,
+    ContextMenuShortcut,
+    ContextMenuSub,
+    ContextMenuSubContent,
+    ContextMenuSubTrigger,
+    ContextMenuTrigger,
+} from "@/components/ui/context-menu";
 
 function App() {
     return (
         <div className="flex flex-col items-center justify-center h-svh max-w-2xl mx-auto">
-            <div className="h-80">
-                <Command className="rounded-lg border shadow-md md:min-w-[450px]">
-                    <CommandInput placeholder="Type a command or search..." />
-                    <CommandList>
-                        <CommandEmpty>No results found.</CommandEmpty>
-                        <CommandGroup heading="Suggestions">
-                            <CommandItem>
-                                <Calendar />
-                                <span>Calendar</span>
-                            </CommandItem>
-                            <CommandItem>
-                                <Smile />
-                                <span>Search Emoji</span>
-                            </CommandItem>
-                            <CommandItem disabled>
-                                <Calculator />
-                                <span>Calculator</span>
-                            </CommandItem>
-                        </CommandGroup>
-                        <CommandSeparator />
-                        <CommandGroup heading="Settings">
-                            <CommandItem>
-                                <User />
-                                <span>Profile</span>
-                                <CommandShortcut>⌘P</CommandShortcut>
-                            </CommandItem>
-                            <CommandItem>
-                                <CreditCard />
-                                <span>Billing</span>
-                                <CommandShortcut>⌘B</CommandShortcut>
-                            </CommandItem>
-                            <CommandItem>
-                                <Settings />
-                                <span>Settings</span>
-                                <CommandShortcut>⌘S</CommandShortcut>
-                            </CommandItem>
-                        </CommandGroup>
-                    </CommandList>
-                </Command>
-            </div>
+            <ContextMenu>
+                <ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm">
+                    Right click here
+                </ContextMenuTrigger>
+                <ContextMenuContent className="w-64">
+                    <ContextMenuItem inset>
+                        Back
+                        <ContextMenuShortcut>⌘[</ContextMenuShortcut>
+                    </ContextMenuItem>
+                    <ContextMenuItem inset disabled>
+                        Forward
+                        <ContextMenuShortcut>⌘]</ContextMenuShortcut>
+                    </ContextMenuItem>
+                    <ContextMenuItem inset>
+                        Reload
+                        <ContextMenuShortcut>⌘R</ContextMenuShortcut>
+                    </ContextMenuItem>
+                    <ContextMenuSub>
+                        <ContextMenuSubTrigger inset>
+                            More Tools
+                        </ContextMenuSubTrigger>
+                        <ContextMenuSubContent className="w-48">
+                            <ContextMenuItem>
+                                Save Page As...
+                                <ContextMenuShortcut>⇧⌘S</ContextMenuShortcut>
+                            </ContextMenuItem>
+                            <ContextMenuItem>
+                                Create Shortcut...
+                            </ContextMenuItem>
+                            <ContextMenuItem>Name Window...</ContextMenuItem>
+                            <ContextMenuSeparator />
+                            <ContextMenuItem>Developer Tools</ContextMenuItem>
+                        </ContextMenuSubContent>
+                    </ContextMenuSub>
+                    <ContextMenuSeparator />
+                    <ContextMenuCheckboxItem checked>
+                        Show Bookmarks Bar
+                        <ContextMenuShortcut>⌘⇧B</ContextMenuShortcut>
+                    </ContextMenuCheckboxItem>
+                    <ContextMenuCheckboxItem>
+                        Show Full URLs
+                    </ContextMenuCheckboxItem>
+                    <ContextMenuSeparator />
+                    <ContextMenuRadioGroup value="pedro">
+                        <ContextMenuLabel inset>People</ContextMenuLabel>
+                        <ContextMenuSeparator />
+                        <ContextMenuRadioItem value="pedro">
+                            Pedro Duarte
+                        </ContextMenuRadioItem>
+                        <ContextMenuRadioItem value="colm">
+                            Colm Tuite
+                        </ContextMenuRadioItem>
+                    </ContextMenuRadioGroup>
+                </ContextMenuContent>
+            </ContextMenu>
         </div>
     );
 }
