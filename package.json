@@ -1,7 +1,7 @@
 {
     "name": "react-starter",
     "private": true,
-    "version": "0.0.37",
+    "version": "0.0.38",
     "type": "module",
     "scripts": {
         "dev": "vite",
@@ -25,6 +25,7 @@
         "@radix-ui/react-hover-card": "^1.1.6",
         "@radix-ui/react-label": "^2.1.2",
         "@radix-ui/react-menubar": "^1.1.6",
+        "@radix-ui/react-navigation-menu": "^1.2.5",
         "@radix-ui/react-popover": "^1.1.6",
         "@radix-ui/react-slot": "^1.1.2",
         "@tailwindcss/vite": "^4.0.12",
