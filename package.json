@@ -1,7 +1,7 @@
 {
     "name": "react-starter",
     "private": true,
-    "version": "0.0.35",
+    "version": "0.0.36",
     "type": "module",
     "scripts": {
         "dev": "vite",
@@ -33,6 +33,7 @@
         "cmdk": "^1.0.4",
         "date-fns": "^4.1.0",
         "embla-carousel-react": "^8.5.2",
+        "input-otp": "^1.4.2",
         "lucide-react": "^0.479.0",
         "react": "^19.0.0",
         "react-day-picker": "^8.10.1",
