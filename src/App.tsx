@@ -1,24 +1,13 @@
-import { Separator } from "@/components/ui/separator";
+import { Skeleton } from "@/components/ui/skeleton";
 
 function App() {
     return (
-        <div className="flex flex-col items-center h-svh max-w-2xl mx-auto pt-4">
-            <div>
-                <div className="space-y-1">
-                    <h4 className="text-sm font-medium leading-none">
-                        Radix Primitives
-                    </h4>
-                    <p className="text-sm text-muted-foreground">
-                        An open-source UI component library.
-                    </p>
-                </div>
-                <Separator className="my-4" />
-                <div className="flex h-5 items-center space-x-4 text-sm">
-                    <div>Blog</div>
-                    <Separator orientation="vertical" />
-                    <div>Docs</div>
-                    <Separator orientation="vertical" />
-                    <div>Source</div>
+        <div className="flex flex-col items-center justify-center h-svh max-w-2xl mx-auto pt-4">
+            <div className="flex items-center space-x-4">
+                <Skeleton className="h-12 w-12 rounded-full" />
+                <div className="space-y-2">
+                    <Skeleton className="h-4 w-[250px]" />
+                    <Skeleton className="h-4 w-[200px]" />
                 </div>
             </div>
         </div>
