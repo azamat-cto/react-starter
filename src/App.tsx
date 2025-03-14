@@ -1,31 +1,26 @@
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
 
 function App() {
     return (
         <div className="flex flex-col items-center h-svh max-w-2xl mx-auto pt-4">
-            <Select>
-                <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Select a fruit" />
-                </SelectTrigger>
-                <SelectContent>
-                    <SelectGroup>
-                        <SelectLabel>Fruits</SelectLabel>
-                        <SelectItem value="apple">Apple</SelectItem>
-                        <SelectItem value="banana">Banana</SelectItem>
-                        <SelectItem value="blueberry">Blueberry</SelectItem>
-                        <SelectItem value="grapes">Grapes</SelectItem>
-                        <SelectItem value="pineapple">Pineapple</SelectItem>
-                    </SelectGroup>
-                </SelectContent>
-            </Select>
+            <div>
+                <div className="space-y-1">
+                    <h4 className="text-sm font-medium leading-none">
+                        Radix Primitives
+                    </h4>
+                    <p className="text-sm text-muted-foreground">
+                        An open-source UI component library.
+                    </p>
+                </div>
+                <Separator className="my-4" />
+                <div className="flex h-5 items-center space-x-4 text-sm">
+                    <div>Blog</div>
+                    <Separator orientation="vertical" />
+                    <div>Docs</div>
+                    <Separator orientation="vertical" />
+                    <div>Source</div>
+                </div>
+            </div>
         </div>
     );
 }
