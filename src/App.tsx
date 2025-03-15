@@ -1,44 +1,27 @@
-import {
-    ResizableHandle,
-    ResizablePanel,
-    ResizablePanelGroup,
-} from "@/components/ui/resizable";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 function App() {
     return (
         <>
             <div className="flex flex-col items-center justify-center h-svh">
                 <div>
-                    <ResizablePanelGroup
-                        direction="horizontal"
-                        className="max-w-md rounded-lg border md:min-w-[450px]"
-                    >
-                        <ResizablePanel defaultSize={50}>
-                            <div className="flex h-[200px] items-center justify-center p-6">
-                                <span className="font-semibold">One</span>
-                            </div>
-                        </ResizablePanel>
-                        <ResizableHandle />
-                        <ResizablePanel defaultSize={50}>
-                            <ResizablePanelGroup direction="vertical">
-                                <ResizablePanel defaultSize={25}>
-                                    <div className="flex h-full items-center justify-center p-6">
-                                        <span className="font-semibold">
-                                            Two
-                                        </span>
-                                    </div>
-                                </ResizablePanel>
-                                <ResizableHandle />
-                                <ResizablePanel defaultSize={75}>
-                                    <div className="flex h-full items-center justify-center p-6">
-                                        <span className="font-semibold">
-                                            Three
-                                        </span>
-                                    </div>
-                                </ResizablePanel>
-                            </ResizablePanelGroup>
-                        </ResizablePanel>
-                    </ResizablePanelGroup>
+                    <RadioGroup defaultValue="option-one">
+                        <div className="flex items-center space-x-2">
+                            <RadioGroupItem
+                                value="option-one"
+                                id="option-one"
+                            />
+                            <Label htmlFor="option-one">Option One</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                            <RadioGroupItem
+                                value="option-two"
+                                id="option-two"
+                            />
+                            <Label htmlFor="option-two">Option Two</Label>
+                        </div>
+                    </RadioGroup>
                 </div>
             </div>
         </>
