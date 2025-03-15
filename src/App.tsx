@@ -1,76 +1,29 @@
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
+
+const tags = Array.from({ length: 50 }).map(
+    (_, i, a) => `v1.2.0-beta.${a.length - i}`,
+);
 
 function App() {
     return (
         <>
             <div className="flex flex-col items-center justify-center h-svh">
-                <Tabs defaultValue="account" className="w-[400px]">
-                    <TabsList className="grid w-full grid-cols-2">
-                        <TabsTrigger value="account">Account</TabsTrigger>
-                        <TabsTrigger value="password">Password</TabsTrigger>
-                    </TabsList>
-                    <TabsContent value="account">
-                        <Card>
-                            <CardHeader>
-                                <CardTitle>Account</CardTitle>
-                                <CardDescription>
-                                    Make changes to your account here. Click
-                                    save when you're done.
-                                </CardDescription>
-                            </CardHeader>
-                            <CardContent className="space-y-2">
-                                <div className="space-y-1">
-                                    <Label htmlFor="name">Name</Label>
-                                    <Input id="name" />
+                <ScrollArea className="h-72 w-48 rounded-md border">
+                    <div className="p-4">
+                        <h4 className="mb-4 text-sm font-medium leading-none">
+                            Tags
+                        </h4>
+                        {tags.map((tag) => (
+                            <>
+                                <div key={tag} className="text-sm">
+                                    {tag}
                                 </div>
-                                <div className="space-y-1">
-                                    <Label htmlFor="username">Username</Label>
-                                    <Input id="username" />
-                                </div>
-                            </CardContent>
-                            <CardFooter>
-                                <Button>Save changes</Button>
-                            </CardFooter>
-                        </Card>
-                    </TabsContent>
-                    <TabsContent value="password">
-                        <Card>
-                            <CardHeader>
-                                <CardTitle>Password</CardTitle>
-                                <CardDescription>
-                                    Change your password here. After saving,
-                                    you'll be logged out.
-                                </CardDescription>
-                            </CardHeader>
-                            <CardContent className="space-y-2">
-                                <div className="space-y-1">
-                                    <Label htmlFor="current">
-                                        Current password
-                                    </Label>
-                                    <Input id="current" type="password" />
-                                </div>
-                                <div className="space-y-1">
-                                    <Label htmlFor="new">New password</Label>
-                                    <Input id="new" type="password" />
-                                </div>
-                            </CardContent>
-                            <CardFooter>
-                                <Button>Save password</Button>
-                            </CardFooter>
-                        </Card>
-                    </TabsContent>
-                </Tabs>
+                                <Separator className="my-2" />
+                            </>
+                        ))}
+                    </div>
+                </ScrollArea>
             </div>
         </>
     );
