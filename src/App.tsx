@@ -1,29 +1,45 @@
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
-
-const tags = Array.from({ length: 50 }).map(
-    (_, i, a) => `v1.2.0-beta.${a.length - i}`,
-);
+import {
+    ResizableHandle,
+    ResizablePanel,
+    ResizablePanelGroup,
+} from "@/components/ui/resizable";
 
 function App() {
     return (
         <>
             <div className="flex flex-col items-center justify-center h-svh">
-                <ScrollArea className="h-72 w-48 rounded-md border">
-                    <div className="p-4">
-                        <h4 className="mb-4 text-sm font-medium leading-none">
-                            Tags
-                        </h4>
-                        {tags.map((tag) => (
-                            <>
-                                <div key={tag} className="text-sm">
-                                    {tag}
-                                </div>
-                                <Separator className="my-2" />
-                            </>
-                        ))}
-                    </div>
-                </ScrollArea>
+                <div>
+                    <ResizablePanelGroup
+                        direction="horizontal"
+                        className="max-w-md rounded-lg border md:min-w-[450px]"
+                    >
+                        <ResizablePanel defaultSize={50}>
+                            <div className="flex h-[200px] items-center justify-center p-6">
+                                <span className="font-semibold">One</span>
+                            </div>
+                        </ResizablePanel>
+                        <ResizableHandle />
+                        <ResizablePanel defaultSize={50}>
+                            <ResizablePanelGroup direction="vertical">
+                                <ResizablePanel defaultSize={25}>
+                                    <div className="flex h-full items-center justify-center p-6">
+                                        <span className="font-semibold">
+                                            Two
+                                        </span>
+                                    </div>
+                                </ResizablePanel>
+                                <ResizableHandle />
+                                <ResizablePanel defaultSize={75}>
+                                    <div className="flex h-full items-center justify-center p-6">
+                                        <span className="font-semibold">
+                                            Three
+                                        </span>
+                                    </div>
+                                </ResizablePanel>
+                            </ResizablePanelGroup>
+                        </ResizablePanel>
+                    </ResizablePanelGroup>
+                </div>
             </div>
         </>
     );
