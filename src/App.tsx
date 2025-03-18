@@ -2,7 +2,7 @@ import * as React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "@/components/ui/sonner";
-import { DataTable } from "@/components/user/data-table";
+import { UserTable } from "@/components/user/user-table";
 
 const queryClient = new QueryClient();
 const ReactQueryDevtoolsProduction = React.lazy(() =>
@@ -24,7 +24,7 @@ function App() {
             <QueryClientProvider client={queryClient}>
                 <div className="flex flex-col items-center justify-center h-svh max-w-2xl mx-auto">
                     <div className="w-full overflow-x-auto">
-                        <DataTable />
+                        <UserTable />
                     </div>
                 </div>
                 <Toaster />

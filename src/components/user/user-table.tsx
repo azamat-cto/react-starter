@@ -20,7 +20,7 @@ import { Button } from "../ui/button";
 import { Person } from "@/types/person";
 import { fetchData } from "@/lib/faker";
 
-export function DataTable() {
+export function UserTable() {
     const columns = useMemo<ColumnDef<Person>[]>(
         () => [
             {
