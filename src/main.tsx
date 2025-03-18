@@ -1,17 +1,14 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import * as React from "react";
+import ReactDom from "react-dom/client";
 import "./styles/index.css";
 import App from "./App.tsx";
-import { Toaster } from "@/components/ui/sonner";
 
 const rootElement = document.getElementById("root") as HTMLElement;
-
 if (!rootElement.innerHTML) {
-    const root = createRoot(rootElement);
+    const root = ReactDom.createRoot(rootElement);
     root.render(
-        <StrictMode>
+        <React.StrictMode>
             <App />
-            <Toaster />
-        </StrictMode>,
+        </React.StrictMode>,
     );
 }
