@@ -1,14 +1,25 @@
 import * as React from "react";
 import ReactDom from "react-dom/client";
-import "./styles/index.css";
-import App from "./App.tsx";
+import "./style/index.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { RouterProvider } from "react-router";
+import { router } from "./router";
+
+const queryClient = new QueryClient();
 
 const rootElement = document.getElementById("root") as HTMLElement;
+
 if (!rootElement.innerHTML) {
     const root = ReactDom.createRoot(rootElement);
     root.render(
         <React.StrictMode>
-            <App />
+            <QueryClientProvider client={queryClient}>
+                <RouterProvider router={router} />
+                {import.meta.env.DEV && (
+                    <ReactQueryDevtools initialIsOpen={false} />
+                )}
+            </QueryClientProvider>
         </React.StrictMode>,
     );
 }

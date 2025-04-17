@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { Person } from "@/types/person";
+import { Person } from "@/type/person";
 
 const range = (len: number) => {
     const arr: number[] = [];
