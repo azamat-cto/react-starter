@@ -39,7 +39,7 @@ const data = {
             icon: UsersRound,
         },
         {
-            title: "WINGS",
+            title: "Wings",
             url: "/wings",
             icon: Gauge,
         },
