@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router";
 import App from "@/App.tsx";
 
 // LOGIN
@@ -30,6 +30,10 @@ export const router = createBrowserRouter([
         path: "/",
         element: <App />,
         children: [
+            {
+                index: true,
+                element: <Navigate to="/statistic" replace />,
+            },
             {
                 path: "statistic",
                 element: <StatisticPage />,
