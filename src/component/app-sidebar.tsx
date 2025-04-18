@@ -1,9 +1,11 @@
 import * as React from "react";
+import { useLocation } from "react-router";
 import {
     ChartNoAxesCombined,
     CreditCard,
     Gauge,
     IdCard,
+    LucideIcon,
     ScanFace,
     UsersRound,
 } from "lucide-react";
@@ -15,10 +17,22 @@ import {
     SidebarHeader,
     SidebarMenuButton,
     SidebarRail,
+    useSidebar,
 } from "@/component/ui/sidebar";
 
 import { NavMain } from "./nav-main";
 import { NavUser } from "./nav-user";
+
+export type NavItem = {
+    title: string;
+    url: string;
+    icon?: LucideIcon;
+    isActive?: boolean;
+    items?: {
+        title: string;
+        url: string;
+    }[];
+};
 
 const data = {
     user: {
@@ -37,44 +51,54 @@ const data = {
             title: "Client",
             url: "/client",
             icon: UsersRound,
+            isActive: false,
         },
         {
             title: "Wings",
             url: "/wings",
             icon: Gauge,
+            isActive: false,
         },
         {
             title: "Card",
             url: "",
             icon: CreditCard,
+            isActive: false,
             items: [
                 {
                     title: "Orders",
                     url: "/card/orders",
+                    isActive: false,
                 },
                 {
                     title: "Style card",
                     url: "/card/style-card",
+                    isActive: false,
                 },
                 {
                     title: "Order areas",
                     url: "/card/order-areas",
+                    isActive: false,
                 },
                 {
                     title: "Delivery areas",
                     url: "/card/delivery-areas",
+                    isActive: false,
                 },
                 {
                     title: "Order branches",
                     url: "/card/order-branches",
+                    isActive: false,
                 },
                 {
                     title: "Prophylactic cards",
                     url: "/card/prophylactic-cards",
+                    isActive: false,
                 },
                 {
                     title: "Available cards to order",
                     url: "/card/available-cards-to-order",
+                    isActive: false,
                 },
             ],
         },
@@ -82,21 +106,42 @@ const data = {
             title: "Momentum",
             url: "/momentum",
             icon: CreditCard,
+            isActive: false,
         },
         {
             title: "OneId",
             url: "/oneid",
             icon: IdCard,
+            isActive: false,
         },
         {
             title: "Identification",
             url: "/identification",
             icon: ScanFace,
+            isActive: false,
         },
     ],
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+    const [activeItem, setActiveItem] = React.useState<NavItem>(
+        data.navMain[0],
+    );
+    const { setOpen } = useSidebar();
+    const { pathname } = useLocation();
+
+    React.useEffect(() => {
+        const current = data.navMain.find((item) => {
+            return (
+                item.url === pathname ||
+                item.items?.some((sub) => sub.url === pathname)
+            );
+        });
+        if (current) {
+            setActiveItem(current);
+        }
+    }, [pathname]);
+
     return (
         <Sidebar collapsible="icon" {...props}>
             <SidebarHeader className="border-b h-16">
@@ -131,7 +176,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 </SidebarMenuButton>
             </SidebarHeader>
             <SidebarContent className="gap-0">
-                <NavMain items={data.navMain} />
+                <NavMain
+                    setOpen={setOpen}
+                    items={data.navMain}
+                    activeItem={activeItem}
+                    setActiveItem={setActiveItem}
+                />
             </SidebarContent>
             <SidebarFooter>
                 <NavUser user={data.user} />
